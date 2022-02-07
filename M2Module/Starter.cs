@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using M2Module.Models;
-using M2Module.Services;
+﻿using M2Module.ExtensionConfig;
 using M2Module.Interfaces;
-using M2Module.ExtensionConfig;
+using M2Module.Models;
 
 namespace M2Module
 {
@@ -32,9 +26,15 @@ namespace M2Module
             ConsoleArrayOutputExtension.ConsoleArrayOutput(lineUp);
             Console.WriteLine("Please write position of players you want to see:");
             string usertext = Console.ReadLine();
-            var group = getGroupOfPlayers.GetGroup(usertext);
-            ConsoleArrayOutputExtension.ConsoleArrayOutput(group);
-
+            while ( usertext != "Exit")
+            {
+                var group = getGroupOfPlayers.GetGroup(usertext);
+                if (group is not null)
+                {
+                    ConsoleArrayOutputExtension.ConsoleArrayOutput(group);
+                }
+                usertext = Console.ReadLine();
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using M2Module.Config;
-using Autofac;
-using M2Module.Interfaces;
+﻿using Autofac;
+using M2Module.Config;
 
 namespace M2Module
 {

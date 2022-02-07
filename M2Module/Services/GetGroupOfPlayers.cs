@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using M2Module.ExceptionConfig;
 using M2Module.Interfaces;
 using M2Module.Models;
-using M2Module.ExceptionConfig;
 
 namespace M2Module.Services
 {
     public class GetGroupOfPlayers : IGetGroupOfPlayers
     {
         private readonly IGenerateLineUp lineUp;
-
-        private readonly FootballPlayer footballPlayer;
 
         public GetGroupOfPlayers(IGenerateLineUp lineUp)
         {
@@ -24,51 +17,79 @@ namespace M2Module.Services
 
         public FootballPlayer[] GroupOfPlayers { get; set; }
 
-        private int counter;
-
         public FootballPlayer[] GetGroup(string text)
         {
+            int Counter = 0;
             AllPlayers = lineUp.GetFootballPlayers();
-
-            foreach (var player in AllPlayers)
+            try
             {
-                try
+                switch (text)
                 {
-                    if (text == footballPlayer.Position)
-                    {
-                        if (text == "Forward")
+                    case "Forward":
                         {
-                            GroupOfPlayers[counter] = player;
-                            counter++;
+                            foreach (var player in AllPlayers)
+                            {
+                                if (text == player.Position)
+                                {
+                                    GroupOfPlayers[Counter] = player;
+                                    Counter++;
+                                }
+                            }
+
+                            break;
                         }
 
-                        if (text == "Goalkeeper")
+                    case "Midfielder":
                         {
-                            GroupOfPlayers[counter] = player;
-                            counter++;
+                            foreach (var player in AllPlayers)
+                            {
+                                if (text == player.Position)
+                                {
+                                    GroupOfPlayers[Counter] = player;
+                                    Counter++;
+                                }
+                            }
+
+                            break;
                         }
 
-                        if (text == "Midfielder")
+                    case "Goalkeeper":
                         {
-                            GroupOfPlayers[counter] = player;
-                            counter++;
+                            foreach (var player in AllPlayers)
+                            {
+                                if (text == player.Position)
+                                {
+                                    GroupOfPlayers[Counter] = player;
+                                    Counter++;
+                                }
+                            }
+
+                            break;
                         }
 
-                        if (text == "Defender")
+                    case "Defender":
                         {
-                            GroupOfPlayers[counter] = player;
-                            counter++;
+                            foreach (var player in AllPlayers)
+                            {
+                                if (text == player.Position)
+                                {
+                                    GroupOfPlayers[Counter] = player;
+                                    Counter++;
+                                }
+                            }
+
+                            break;
                         }
-                    }
-                    else
-                    {
-                        throw new InvalidInputException(text);
-                    }
+
+                    default:
+                        {
+                            throw new InvalidInputException(text);
+                        }
                 }
-                catch (InvalidInputException ex)
-                {
-                    Console.WriteLine("Error: Unknown Position");
-                }
+            }
+            catch (InvalidInputException ex)
+            {
+                Console.WriteLine($"Error: Unknown Position");
             }
 
             return GroupOfPlayers;
