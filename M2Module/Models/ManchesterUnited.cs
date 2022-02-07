@@ -13,7 +13,12 @@ namespace M2Module.Models
 
         public override string FootballTeamName => "Manchester United";
 
-        public FootballPlayer[] Team { get; set; }
+        public FootballPlayer[] Team { get; set; } = new FootballPlayer[1];
+
+        public ManchesterUnited()
+        {
+
+        }
 
         private void BuildTeam(FootballPlayer[] footballPlayers)
         {

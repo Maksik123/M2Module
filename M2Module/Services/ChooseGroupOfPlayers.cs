@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using M2Module.Interfaces;
 using M2Module.Models;
-using M2Module.Exception;
+using M2Module.ExceptionConfig;
 
 namespace M2Module.Services
 {
     public class ChooseGroupOfPlayers : IChooseGroupOfPlayers
     {
         private readonly IGenerateLineUp lineUp;
+
         private readonly FootballPlayer footballPlayer;
 
         public FootballPlayer[] AllPlayers { get; set; }
@@ -28,7 +29,7 @@ namespace M2Module.Services
             {
                 try
                 {
-                    while (text == footballPlayer.Position)
+                    if (text == footballPlayer.Position)
                     {
                         if (text == "Forward")
                         {
@@ -54,10 +55,14 @@ namespace M2Module.Services
                             counter++;
                         }
                     }
+                    else
+                    {
+                        throw new InvalidInputException(text);
+                    }
                 }
-                catch
+                catch (InvalidInputException ex)
                 {
-                    throw;
+                    Console.WriteLine($"error: {ex.Message}");
                 }
             }
 

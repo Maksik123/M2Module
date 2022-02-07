@@ -13,11 +13,9 @@ namespace M2Module.Models
     {
         public FootballPlayer[] ManchesterUnitedTeam { get; set; }
 
-        private readonly IGenerateLineUp lineUp;
-
         public FootballPlayer[] GetFootballPlayers()
         {
-            ManchesterUnitedTeam = lineUp.GetFootballPlayers();
+            ManchesterUnitedTeam = IGenerateLineUp.GetFootballPlayers();
             return ManchesterUnitedTeam;
         }
     }

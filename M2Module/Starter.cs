@@ -21,9 +21,6 @@ namespace M2Module
         {
             Console.WriteLine("Please write position of players you want to see:");
             string usertext = Console.ReadLine();
-            footballTeam.Team = manchesterUnitedLineUp.GetFootballPlayers();
-            var groupOfPlayers = chooseGroupOfPlayers.GetGroupOfPlayers(usertext);
-            ConsoleArrayOutputExtension.ConsoleArrayOutput(groupOfPlayers);
         }
     }
 }
