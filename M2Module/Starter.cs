@@ -17,14 +17,11 @@ namespace M2Module
 
         private readonly FootballTeam footballTeam;
 
-        public Starter(IGenerateLineUp generateLineUp)
+        public Starter(IGenerateLineUp generateLineUp, IGetGroupOfPlayers chooseGroupOfPlayers, FootballTeam footballTeam)
         {
             this.generateLineUp = generateLineUp;
-        }
-
-        public Starter(IGetGroupOfPlayers chooseGroupOfPlayers)
-        {
             this.getGroupOfPlayers = chooseGroupOfPlayers;
+            this.footballTeam = footballTeam;
         }
 
         public void Run()
