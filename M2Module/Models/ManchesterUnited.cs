@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using M2Module.Models;
+using M2Module.Interfaces;
 
 namespace M2Module.Models
 {
-    public class ManchesterUnited : FootballTeam
+    public class ManchesterUnited : FootballTeam, IGenerateLineUp
     {
-        private readonly ManchesterUnitedLineUp manchesterUnitedLineUp;
+        private readonly IGenerateLineUp generateLineUp;
+
+        public ManchesterUnited(IGenerateLineUp generateLineUp)
+        {
+            this.generateLineUp = generateLineUp;
+        }
 
         public override string FootballTeamName => "Manchester United";
 
-        public FootballPlayer[] Team { get; set; } = new FootballPlayer[1];
+        public override FootballPlayer[] TeamLineUp { get ; set ; }
 
-        public ManchesterUnited()
+        public FootballPlayer[] GetFootballPlayers()
         {
-
+            TeamLineUp = this.generateLineUp.GetFootballPlayers();
+            return TeamLineUp;
         }
-
-        private void BuildTeam(FootballPlayer[] footballPlayers)
-        {
-            Team = manchesterUnitedLineUp.GetFootballPlayers();
-        }
-
     }
 }

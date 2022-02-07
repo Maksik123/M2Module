@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using M2Module.Models;
 
-namespace M2Module.Extensions
+namespace M2Module.ExtensionConfig
 {
     public static class ConsoleArrayOutputExtension
     {

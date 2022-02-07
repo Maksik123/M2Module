@@ -10,7 +10,7 @@ namespace M2Module.Models
     {
         public abstract string FootballTeamName { get; }
 
-        public FootballPlayer[] Team { get; set; }
+        public abstract FootballPlayer[] TeamLineUp { get; set; }
 
     }
 }

@@ -10,7 +10,7 @@ namespace M2Module.Config
         public IContainer DependencyInjection()
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterType<GenerateManchesterUnitedLineUp>().As<IGenerateLineUp>();
+            containerBuilder.RegisterType<GenerateLineUp>().As<IGenerateLineUp>();
             containerBuilder.RegisterType<ManchesterUnited>().As<FootballTeam>();
             containerBuilder.RegisterType<Starter>();
             return containerBuilder.Build();

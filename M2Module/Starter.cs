@@ -6,21 +6,38 @@ using System.Threading.Tasks;
 using M2Module.Models;
 using M2Module.Services;
 using M2Module.Interfaces;
-using M2Module.Extensions;
+using M2Module.ExtensionConfig;
 
 namespace M2Module
 {
     public class Starter
     {
-        ManchesterUnitedLineUp manchesterUnitedLineUp = new ManchesterUnitedLineUp();
+        private readonly IGenerateLineUp generateLineUp;
+        private readonly IGetGroupOfPlayers getGroupOfPlayers;
 
-        private readonly IChooseGroupOfPlayers chooseGroupOfPlayers;
-        public FootballTeam footballTeam;
+        private readonly FootballTeam footballTeam;
+
+        public Starter(IGenerateLineUp generateLineUp)
+        {
+            this.generateLineUp = generateLineUp;
+        }
+
+        public Starter(IGetGroupOfPlayers chooseGroupOfPlayers)
+        {
+            this.getGroupOfPlayers = chooseGroupOfPlayers;
+        }
 
         public void Run()
         {
+            Console.WriteLine($"{footballTeam.FootballTeamName} Line-Up:");
+            footballTeam.TeamLineUp = generateLineUp.GetFootballPlayers();
+            var lineUp = footballTeam.TeamLineUp;
+            ConsoleArrayOutputExtension.ConsoleArrayOutput(lineUp);
             Console.WriteLine("Please write position of players you want to see:");
             string usertext = Console.ReadLine();
+            var group = getGroupOfPlayers.GetGroup(usertext);
+            ConsoleArrayOutputExtension.ConsoleArrayOutput(group);
+
         }
     }
 }

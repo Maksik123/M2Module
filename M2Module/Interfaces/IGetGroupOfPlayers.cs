@@ -7,8 +7,8 @@ using M2Module.Models;
 
 namespace M2Module.Interfaces
 {
-    public interface IChooseGroupOfPlayers
+    public interface IGetGroupOfPlayers
     {
-        public FootballPlayer[] GetGroupOfPlayers(string text);
+        public FootballPlayer[] GetGroup(string text);
     }
 }

@@ -8,11 +8,11 @@ using M2Module.Models;
 
 namespace M2Module.Services
 {
-    public class GenerateManchesterUnitedLineUp : IGenerateLineUp
+    public class GenerateLineUp : IGenerateLineUp
     {
         public FootballPlayer[] GetFootballPlayers()
         {
-            FootballPlayer[] team = new[]
+            FootballPlayer[] FootbalTeamLineUp = new[]
                 {
                     new FootballPlayer() { Name = "De Hea", Age = 31, Rating = 85, Position = "Goalkeeper" },
                     new FootballPlayer() { Name = "Ronaldo", Age = 37, Rating = 89, Position = "Forward" },
@@ -28,7 +28,7 @@ namespace M2Module.Services
                     new FootballPlayer() { Name = "Telles", Age = 29, Rating = 83, Position = "Defender" },
                     new FootballPlayer() { Name = "Henderson", Age = 24, Rating = 78, Position = "Goalkeeper" },
                 };
-            return team;
+            return FootbalTeamLineUp;
         }
     }
 }

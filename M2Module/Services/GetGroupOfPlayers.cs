@@ -9,11 +9,16 @@ using M2Module.ExceptionConfig;
 
 namespace M2Module.Services
 {
-    public class ChooseGroupOfPlayers : IChooseGroupOfPlayers
+    public class GetGroupOfPlayers : IGetGroupOfPlayers
     {
         private readonly IGenerateLineUp lineUp;
 
         private readonly FootballPlayer footballPlayer;
+
+        public GetGroupOfPlayers(IGenerateLineUp lineUp)
+        {
+            this.lineUp = lineUp;
+        }
 
         public FootballPlayer[] AllPlayers { get; set; }
 
@@ -21,7 +26,7 @@ namespace M2Module.Services
 
         private int counter;
 
-        public FootballPlayer[] GetGroupOfPlayers(string text)
+        public FootballPlayer[] GetGroup(string text)
         {
             AllPlayers = lineUp.GetFootballPlayers();
 
@@ -62,7 +67,7 @@ namespace M2Module.Services
                 }
                 catch (InvalidInputException ex)
                 {
-                    Console.WriteLine($"error: {ex.Message}");
+                    Console.WriteLine("Error: Unknown Position");
                 }
             }
 
