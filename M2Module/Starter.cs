@@ -20,11 +20,11 @@ namespace M2Module
 
         public void Run()
         {
-            Console.WriteLine($"{footballTeam.FootballTeamName} Line-Up:");
+            Console.WriteLine($"{footballTeam.FootballTeamName} Line-Up:\n");
             footballTeam.TeamLineUp = generateLineUp.GetFootballPlayers();
             var lineUp = footballTeam.TeamLineUp;
             ConsoleArrayOutputExtension.ConsoleArrayOutput(lineUp);
-            Console.WriteLine("Please write position of players you want to see:");
+            Console.WriteLine("\nPlease write position of players you want to see:\nTo Exit program write Exit");
             string usertext = Console.ReadLine();
             while ( usertext != "Exit")
             {
@@ -33,6 +33,7 @@ namespace M2Module
                 {
                     ConsoleArrayOutputExtension.ConsoleArrayOutput(group);
                 }
+
                 usertext = Console.ReadLine();
             }
         }

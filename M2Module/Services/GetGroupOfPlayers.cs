@@ -13,13 +13,14 @@ namespace M2Module.Services
             this.lineUp = lineUp;
         }
 
+        public static int Counter = 1;
+
         public FootballPlayer[] AllPlayers { get; set; }
 
-        public FootballPlayer[] GroupOfPlayers { get; set; }
+        public FootballPlayer[] GroupOfPlayers { get; set; } = new FootballPlayer[Counter];
 
         public FootballPlayer[] GetGroup(string text)
         {
-            int Counter = 0;
             AllPlayers = lineUp.GetFootballPlayers();
             try
             {
@@ -31,12 +32,18 @@ namespace M2Module.Services
                             {
                                 if (text == player.Position)
                                 {
-                                    GroupOfPlayers[Counter] = player;
+                                    var group = new FootballPlayer[Counter];
+                                    group = GroupOfPlayers;
+                                    Array.Resize(ref group, Counter);
+                                    group[Counter - 1] = player;
+                                    GroupOfPlayers = new FootballPlayer[Counter];
+                                    GroupOfPlayers = group;
                                     Counter++;
                                 }
                             }
 
-                            break;
+                            Counter = 1;
+                            return GroupOfPlayers;
                         }
 
                     case "Midfielder":
@@ -45,12 +52,18 @@ namespace M2Module.Services
                             {
                                 if (text == player.Position)
                                 {
-                                    GroupOfPlayers[Counter] = player;
+                                    var group = new FootballPlayer[Counter];
+                                    group = GroupOfPlayers;
+                                    Array.Resize(ref group, Counter);
+                                    group[Counter - 1] = player;
+                                    GroupOfPlayers = new FootballPlayer[Counter];
+                                    GroupOfPlayers = group;
                                     Counter++;
                                 }
                             }
 
-                            break;
+                            Counter = 1;
+                            return GroupOfPlayers;
                         }
 
                     case "Goalkeeper":
@@ -59,12 +72,18 @@ namespace M2Module.Services
                             {
                                 if (text == player.Position)
                                 {
-                                    GroupOfPlayers[Counter] = player;
+                                    var group = new FootballPlayer[Counter];
+                                    group = GroupOfPlayers;
+                                    Array.Resize(ref group, Counter);
+                                    group[Counter - 1] = player;
+                                    GroupOfPlayers = new FootballPlayer[Counter];
+                                    GroupOfPlayers = group;
                                     Counter++;
                                 }
                             }
 
-                            break;
+                            Counter = 1;
+                            return GroupOfPlayers;
                         }
 
                     case "Defender":
@@ -73,26 +92,33 @@ namespace M2Module.Services
                             {
                                 if (text == player.Position)
                                 {
-                                    GroupOfPlayers[Counter] = player;
+                                    var group = new FootballPlayer[Counter];
+                                    group = GroupOfPlayers;
+                                    Array.Resize(ref group, Counter);
+                                    group[Counter - 1] = player;
+                                    GroupOfPlayers = new FootballPlayer[Counter];
+                                    GroupOfPlayers = group;
                                     Counter++;
                                 }
                             }
 
-                            break;
+                            Counter = 1;
+                            return GroupOfPlayers;
                         }
 
                     default:
                         {
+
                             throw new InvalidInputException(text);
                         }
                 }
             }
-            catch (InvalidInputException ex)
+            catch (InvalidInputException exception)
             {
-                Console.WriteLine($"Error: Unknown Position");
+                Console.WriteLine("Error: Unknown Position");
             }
 
-            return GroupOfPlayers;
+            return new FootballPlayer[0];
         }
     }
 }
