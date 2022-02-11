@@ -5,7 +5,7 @@ using M2Module.Models;
 
 namespace M2Module.Config
 {
-    public class DependecyInjection
+    public class DependencyConfig
     {
         public IContainer DependencyInjection()
         {

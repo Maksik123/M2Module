@@ -26,10 +26,10 @@ namespace M2Module
             ConsoleArrayOutputExtension.ConsoleArrayOutput(lineUp);
             Console.WriteLine("\nPlease write position of players you want to see:\nTo Exit program write Exit");
             string usertext = Console.ReadLine();
-            while ( usertext != "Exit")
+            while (usertext != "Exit")
             {
                 var group = getGroupOfPlayers.GetGroup(usertext);
-                if (group is not null)
+                if (group != null)
                 {
                     ConsoleArrayOutputExtension.ConsoleArrayOutput(group);
                 }

@@ -7,8 +7,8 @@ namespace M2Module
     {
         public static void Main()
         {
-            DependecyInjection dependecyInjection = new DependecyInjection();
-            var container = dependecyInjection.DependencyInjection();
+            DependencyConfig dependencyConfig = new DependencyConfig();
+            var container = dependencyConfig.DependencyInjection();
             var starter = container.Resolve<Starter>();
             starter.Run();
         }
