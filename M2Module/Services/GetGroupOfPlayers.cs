@@ -13,6 +13,8 @@ namespace M2Module.Services
             this.lineUp = lineUp;
         }
 
+        public AddingToGroupService addtogroup = new AddingToGroupService();
+
         public static int Counter = 1;
 
         public FootballPlayer[] AllPlayers { get; set; }
@@ -28,87 +30,30 @@ namespace M2Module.Services
                 {
                     case "Forward":
                         {
-                            foreach (var player in AllPlayers)
-                            {
-                                if (text == player.Position)
-                                {
-                                    var group = new FootballPlayer[Counter];
-                                    group = GroupOfPlayers;
-                                    Array.Resize(ref group, Counter);
-                                    group[Counter - 1] = player;
-                                    GroupOfPlayers = new FootballPlayer[Counter];
-                                    GroupOfPlayers = group;
-                                    Counter++;
-                                }
-                            }
-
-                            Counter = 1;
+                            GroupOfPlayers = addtogroup.addingToGroup(text, AllPlayers);
                             return GroupOfPlayers;
                         }
 
                     case "Midfielder":
                         {
-                            foreach (var player in AllPlayers)
-                            {
-                                if (text == player.Position)
-                                {
-                                    var group = new FootballPlayer[Counter];
-                                    group = GroupOfPlayers;
-                                    Array.Resize(ref group, Counter);
-                                    group[Counter - 1] = player;
-                                    GroupOfPlayers = new FootballPlayer[Counter];
-                                    GroupOfPlayers = group;
-                                    Counter++;
-                                }
-                            }
-
-                            Counter = 1;
+                            GroupOfPlayers = addtogroup.addingToGroup(text, AllPlayers);
                             return GroupOfPlayers;
                         }
 
                     case "Goalkeeper":
                         {
-                            foreach (var player in AllPlayers)
-                            {
-                                if (text == player.Position)
-                                {
-                                    var group = new FootballPlayer[Counter];
-                                    group = GroupOfPlayers;
-                                    Array.Resize(ref group, Counter);
-                                    group[Counter - 1] = player;
-                                    GroupOfPlayers = new FootballPlayer[Counter];
-                                    GroupOfPlayers = group;
-                                    Counter++;
-                                }
-                            }
-
-                            Counter = 1;
+                            GroupOfPlayers = addtogroup.addingToGroup(text, AllPlayers);
                             return GroupOfPlayers;
                         }
 
                     case "Defender":
                         {
-                            foreach (var player in AllPlayers)
-                            {
-                                if (text == player.Position)
-                                {
-                                    var group = new FootballPlayer[Counter];
-                                    group = GroupOfPlayers;
-                                    Array.Resize(ref group, Counter);
-                                    group[Counter - 1] = player;
-                                    GroupOfPlayers = new FootballPlayer[Counter];
-                                    GroupOfPlayers = group;
-                                    Counter++;
-                                }
-                            }
-
-                            Counter = 1;
+                            GroupOfPlayers = addtogroup.addingToGroup(text, AllPlayers);
                             return GroupOfPlayers;
                         }
 
                     default:
                         {
-
                             throw new InvalidInputException(text);
                         }
                 }
